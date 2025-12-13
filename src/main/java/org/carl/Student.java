@@ -19,6 +19,22 @@ public class Student {
 
     private static int nextId;
 
+    public boolean registerCourse(Course course) {
+        if (this.registeredCourses.contains(course)) {
+            return false;
+        }
+
+        registeredCourses.add(course);
+
+        course.getRegisteredStudents().add(this);
+
+        for (Assignment assignment : course.getAssignments()) {
+            assignment.getScores().add(null);
+        }
+
+        return true;
+    }
+
     public String toSimplifiedString() {
         return "Student{" +
                 "studentId='" + studentId + '\'' +
