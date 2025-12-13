@@ -18,4 +18,16 @@ public class Course {
     private List<Student> registeredStudents;
 
     private static int nextId;
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", credits=" + credits +
+                ", departmentName=" + department.getDepartmentName() +
+                ", assignments=" + assignments +
+                ", registeredStudents=" + registeredStudents.toString() +
+                '}';
+    }
 }
