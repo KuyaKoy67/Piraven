@@ -42,6 +42,8 @@ public class Student {
 
         registeredCourses.remove(course);
 
+        course.getRegisteredStudents().remove(this);
+
         return true;
     }
 
