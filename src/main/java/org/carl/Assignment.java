@@ -1,16 +1,22 @@
 package org.carl;
 
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+@Setter
+@Getter
 public class Assignment {
     private String assignmentId;
     private String assignmentName;
     private double weight;
-    private List<Integer> scores;
+    private ArrayList<Integer> scores;
 
     private static int nextId;
 
-    private void calcAssignmentAvg() {
+    public void calcAssignmentAvg() {
         double sum = 0;
 
         for (int score : scores) {
