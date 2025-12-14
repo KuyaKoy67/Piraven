@@ -9,8 +9,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Getter
 public class Department {
-    private final String departmentId;
-    @Setter private String departmentName;
+    private String departmentId;
+    private String departmentName;
 
     private static int nextId;
 
@@ -20,7 +20,7 @@ public class Department {
         }
 
         for (char c : departmentName.toCharArray()) {
-            if (!Character.isLetter(c) && !(c >= '0' && c <= '9')) {
+            if (!Character.isLetter(c) && c != ' ') {
                 return false;
             }
         }
@@ -38,10 +38,9 @@ public class Department {
     }
 
     public Department(String departmentName) {
-
         if (isDepartmentNameValid(departmentName)) {
             this.departmentId = String.format("D%02d", nextId++);
-            this.departmentName = departmentName;
+            this.departmentName = Util.toTitleCase(departmentName);
         } else {
             this.departmentId = null;
             this.departmentName = null;
