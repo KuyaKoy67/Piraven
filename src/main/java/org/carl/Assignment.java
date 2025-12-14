@@ -37,7 +37,7 @@ public class Assignment {
 
         } else if (randomValue == 5 || randomValue == 6 ||
                 randomValue == 7 || randomValue == 8) {
-            randomScore = rand.nextInt(70, 80 + 1);
+            randomScore = rand.nextInt(80, 90 + 1);
 
         } else {
             randomScore = rand.nextInt(90, 100 + 1);
