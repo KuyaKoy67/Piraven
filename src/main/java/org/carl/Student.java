@@ -57,14 +57,29 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId='" + studentId + '\'' +
-                ", studentName='" + studentName + '\'' +
-                ", gender=" + gender +
-                ", address=" + address +
-                ", department=" + department +
-                ", registeredCourses=" + registeredCourses.toString() +
-                '}';
+        String result = "Student{" +
+                "studentId= " + studentId +
+                ", studentName= " + studentName +
+                ", gender= " + gender +
+                ", address= " + address +
+                ", departmentName= " + department.getDepartmentName() +
+                "\nregisteredCourses= [";
+
+        for (int i = 0; i < registeredCourses.size(); i++) {
+            Course course = registeredCourses.get(i);
+
+            result = result + course.toSimplifiedString();
+
+            result = result.substring(0, result.length() - 1);
+            result = result + ", " + course.getDepartment().getDepartmentName() + ")";
+
+            if (i < registeredCourses.size() - 1) {
+                result = result + ", ";
+            }
+        }
+
+        result = result + "]" + "}";
+        return result;
     }
 
     public Student(String studentName, Gender gender, Address address,
