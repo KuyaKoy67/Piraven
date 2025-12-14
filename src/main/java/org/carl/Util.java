@@ -1,24 +1,24 @@
 package org.carl;
 
-import java.util.Arrays;
-
 public class Util {
-
     public static String toTitleCase(String str) {
-        String[] words = str.split(" ");
-
-        for (String word : words) {
-            if (word == null) {
-                return null;
-            }
-
-            int spaceIdx = word.indexOf(" ");
-            String firstLetter = word.substring(0, 1).toUpperCase();
-            String otherLetters = word.substring(1, spaceIdx).toLowerCase();
-
-            return firstLetter + otherLetters + " ";
+        if (str == null || str.isEmpty()) {
+            return str;
         }
 
-        return Arrays.toString(words);
+        String[] words = str.split(" ");
+        String result = "";
+
+        for (String word : words) {
+            String firstLetter = word.substring(0, 1).toUpperCase();
+            String restOfLetters = word.substring(1).toLowerCase();
+            String titleCaseName = firstLetter + restOfLetters;
+
+            result += titleCaseName + " ";
+        }
+
+        return result.trim();
     }
 }
+
+
