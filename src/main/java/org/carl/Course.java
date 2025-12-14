@@ -73,6 +73,23 @@ public class Course {
         return finalScoresArray;
     }
 
+    public void generateScores() {
+        Random random = new Random();
+
+        int numOfStudents = registeredStudents.size();
+
+        for (Assignment assignment : assignments) {
+            for (int studentIdx = 0; studentIdx < numOfStudents; studentIdx++) {
+                int maxScore = assignment.getMaxPossibleScore();
+                int randomScore = random.nextInt(maxScore + 1);
+
+                assignment.getScores().set(studentIdx, randomScore);
+            }
+        }
+
+        this.calcStudentsAverage();
+    }
+
     @Override
     public String toString() {
         return "Course{" +
