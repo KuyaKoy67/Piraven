@@ -43,8 +43,6 @@ public class Address {
             return false;
         }
 
-        String numbers = "0123456789";
-
         for (int i = 0; i < postalCode.length(); i++) {
             if (i % 2 == 0) {
                 char c = postalCode.charAt(i);
@@ -53,7 +51,7 @@ public class Address {
                 }
             } else {
                 char c = postalCode.charAt(i);
-                if (!(c >= '0' && c <= '9')) {
+                if (!(Character.isDigit(c))) {
                     return false;
                 }
             }
