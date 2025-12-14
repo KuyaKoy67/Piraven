@@ -73,6 +73,17 @@ public class Course {
         return finalScoresArray;
     }
 
+    public boolean addAssignment(String assignmentName, double weight, int maxScore) {
+        Assignment newAssignment = new Assignment(assignmentName, weight, maxScore);
+        assignments.add(newAssignment);
+
+        for (int i = 0; i < registeredStudents.size(); i++) {
+            newAssignment.getScores().add(null);
+        }
+
+        return true;
+    }
+
     public void generateScores() {
         Random random = new Random();
 
