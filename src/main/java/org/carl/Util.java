@@ -1,6 +1,11 @@
 package org.carl;
 
 public class Util {
+    /**
+     * converts each word in a string to a format title case
+     * @param str the given string
+     * @return the string in title case format
+     */
     public static String toTitleCase(String str) {
         if (str == null || str.isEmpty()) {
             return str;

@@ -19,6 +19,14 @@ public class Student {
 
     private static int nextId;
 
+    /**
+     * adds a course to the student's registeredCourses list, adds the student to the
+     * course's registeredStudents lists, and appends a null for the scores of each
+     * assignment of the course. If the course is already registered, returns false
+     * @param course the course
+     * @return the boolean value that confirms if a student is registered to the course
+     * or not
+     */
     public boolean registerCourse(Course course) {
         if (registeredCourses.contains(course)) {
             return false;
@@ -35,6 +43,13 @@ public class Student {
         return true;
     }
 
+    /**
+     * remove the course from the student's registeredCourses list, and removes the student
+     * from the course's registeredStudents list. if the course is not registered yet, directly
+     * returns false without removing anything
+     * @param course the course
+     * @return the boolean value that confirms if a student is dropped out of a course or not
+     */
     public boolean dropCourse(Course course) {
         if (!registeredCourses.contains(course)) {
             return false;
