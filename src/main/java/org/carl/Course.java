@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 @EqualsAndHashCode
 @Getter
@@ -57,34 +58,33 @@ public class Course {
         return true;
     }
 
-    public int[] calcStudentAverage() {
+    public int[] calcStudentsAverage() {
         int numOfStudents = registeredStudents.size();
-
         int[] finalScoresArray = new int[numOfStudents];
 
-        for (int idxOfStudent = 0; idxOfStudent < numOfStudents; idxOfStudent++) {
-            double studentWeightedAverage = 0.0;
+        finalScores.clear();
+
+        for (int i = 0; i < numOfStudents; i++) {
+            double weightedTotal = 0.0;
 
             for (Assignment assignment : assignments) {
-                Integer score = assignment.getScores().get(idxOfStudent);
-
+                Integer score = assignment.getScores().get(i);
                 if (score != null) {
-                    double weight = assignment.getWeight();
-
-                    studentWeightedAverage += (score * weight);
+                    weightedTotal += score * (assignment.getWeight() / 100.0);
                 }
             }
 
-            finalScores.add(studentWeightedAverage);
+            int roundedScore = (int) Math.round(weightedTotal);
 
-            finalScoresArray[idxOfStudent] = (int) Math.round(studentWeightedAverage);
+            finalScores.add((double) roundedScore);
+            finalScoresArray[i] = roundedScore;
         }
 
         return finalScoresArray;
     }
 
     public boolean addAssignment(String assignmentName, double weight, int maxScore) {
-        Assignment newAssignment = new Assignment(assignmentName, weight, maxScore);
+        Assignment newAssignment = new Assignment(assignmentName, weight);
         assignments.add(newAssignment);
 
         for (int i = 0; i < registeredStudents.size(); i++) {
@@ -101,7 +101,7 @@ public class Course {
 
         for (Assignment assignment : assignments) {
             for (int studentIdx = 0; studentIdx < numOfStudents; studentIdx++) {
-                int maxScore = assignment.getMaxPossibleScore();
+                int maxScore = 100;
                 int randomScore = random.nextInt(maxScore + 1);
 
                 assignment.getScores().set(studentIdx, randomScore);
@@ -196,13 +196,11 @@ public class Course {
 
         return result + "}";
     }
-    
+
     public String toSimplifiedString() {
-        return "Course{" +
-                "courseId='" + courseId + '\'' +
+        return  "courseId='" + courseId + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", credits=" + credits +
-                ", department=" + department.getDepartmentName() +
-                '}';
+                ", department=" + department.getDepartmentName();
     }
 }

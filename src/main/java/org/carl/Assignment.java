@@ -16,7 +16,7 @@ public class Assignment {
 
     private static int nextId;
 
-    public Assignment(String assignmentName, double weight, int maxScore) {
+    public Assignment(String assignmentName, double weight) {
         this.assignmentId = String.format("%05d",  nextId++);
         this.assignmentName = Util.toTitleCase(assignmentName);
         this.weight = weight;
@@ -24,6 +24,10 @@ public class Assignment {
     }
 
     public void calcAssignmentAvg() {
+        if (scores.isEmpty()) {
+            double avg = 0;
+        }
+
         double sum = 0;
 
         for (int score : scores) {
