@@ -111,6 +111,52 @@ public class Course {
         this.calcStudentsAverage();
     }
 
+    public void displayScores() {
+        calcStudentsAverage();
+
+        System.out.println("Course: " + courseName + " (" + courseId + ")");
+        System.out.println();
+
+        System.out.printf("%-20s", "");
+        for (Assignment assignment : assignments) {
+            System.out.printf("%-15s", assignment.getAssignmentName());
+        }
+
+        System.out.printf("%-15s%n", "Final Score");
+
+        for (int i = 0; i < registeredStudents.size(); i++) {
+            Student student = registeredStudents.get(i);
+
+            System.out.printf("%-20s", student.getStudentName());
+
+            for (Assignment assignment : assignments) {
+                Integer score = assignment.getScores().get(i);
+                System.out.printf("%-15s", score == null ? "-" : score);
+            }
+
+            System.out.printf("%-15d%n", finalScores.get(i));
+        }
+
+        System.out.printf("%-20s", "Average");
+
+        for (Assignment assignment : assignments) {
+            int sum = 0;
+            int count = 0;
+
+            for (Integer score : assignment.getScores()) {
+                if (score != null) {
+                    sum += score;
+                    count++;
+                }
+            }
+
+            int avg = count == 0 ? 0 : Math.round((float) sum / count);
+            System.out.printf("%-15d", avg);
+        }
+
+        System.out.println();
+    }
+
     @Override
     public String toString() {
         String result = "Course{" +
