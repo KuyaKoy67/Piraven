@@ -127,7 +127,7 @@ public class Course {
      */
     public void generateScores() {
         for (Assignment assignment : assignments) {
-            assignment.generateRandomScore(); // Assumes this method fills the scores for all registered students
+            assignment.generateRandomScore();
         }
         this.calcStudentsAverage();
     }
