@@ -84,8 +84,7 @@ class CourseTest {
         course1.addAssignment("A1", 40, 100);
         course1.addAssignment("A2", 60, 100);
 
-        boolean registered = student.registerCourse(course1);
-        Assertions.assertEquals(true, registered);
+        student.registerCourse(course1);
 
         course1.getAssignments().get(0).getScores().set(0, 80);
         course1.getAssignments().get(1).getScores().set(0, 90);

@@ -67,5 +67,4 @@ class StudentTest {
 
         Assertions.assertEquals(expectedReturn, actualReturn);
     }
-
 }
