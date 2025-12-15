@@ -97,6 +97,33 @@ class CourseTest {
     }
 
     @Test
+    @DisplayName("calcStudentsAverage(): 2 students, two assignments each with weights 40 and 60 -> {86, 90}")
+    void testCalcStudentsAverage2() {
+        Department department = new Department("Computer Science");
+        Course course1 = new Course("Discrete Math", 3.0, department);
+        Address address = new Address(120, "Bouchette", "Montreal", Address.Province.QC, "A1B2C3");
+        Student student1 = new Student("John Alack", Student.Gender.MALE, address, department);
+        Student student2 = new Student("Belledevire Alack", Student.Gender.MALE, address, department);
+
+        course1.addAssignment("A1", 40, 100);
+        course1.addAssignment("A2", 60, 100);
+
+        student1.registerCourse(course1);
+        student2.registerCourse(course1);
+
+        course1.getAssignments().get(0).getScores().set(0, 80);
+        course1.getAssignments().get(1).getScores().set(0, 90);
+
+        course1.getAssignments().get(0).getScores().set(1, 80);
+        course1.getAssignments().get(1).getScores().set(1, 100);
+
+        int[] actual = course1.calcStudentsAverage();
+        int[] expected = {86, 92};
+
+        Assertions.assertArrayEquals(actual, expected);
+    }
+
+    @Test
     @DisplayName("addAssignment(): assignmentName = Midterm Exam, weight = 40.0, maxscore = 100 -> true")
     void addAssignment1() {
         Department department = new Department("Computer Science");
