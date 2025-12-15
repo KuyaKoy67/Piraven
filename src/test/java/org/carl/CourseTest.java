@@ -46,7 +46,7 @@ class CourseTest {
     }
 
     @Test
-    @DisplayName("calcStudentsAverage(): 1 student, two assignments with weights 40 and 60 -> 86")
+    @DisplayName("calcStudentsAverage(): 1 student, two assignments with weights 40 and 60 -> {86}")
     void testCalcStudentsAverage1() {
         Department department = new Department("Computer Science");
         Course course1 = new Course("Discrete Math", 3.0, department);
@@ -66,5 +66,28 @@ class CourseTest {
         int[] expected = {86};
 
         Assertions.assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    @DisplayName("addAssignment(): assignmentName = Midterm Exam, weight = 40.0, maxscore = 100 -> true")
+    void addAssignment1() {
+        Department department = new Department("Computer Science");
+        Course course1 = new Course("Discrete Math", 3.0, department);
+
+        Address address = new Address(120, "Bouchette", "Montreal", Address.Province.QC, "A1B2C3");
+        Student student1 = new Student("John Alack", Student.Gender.MALE, address, department);
+        Student student2 = new Student("Barley Alack", Student.Gender.MALE, address, department);
+
+        student1.registerCourse(course1);
+        student2.registerCourse(course1);
+
+        course1.addAssignment("Mini Quiz", 10.0, 100);
+
+        String newName = "Midterm Exam";
+        double newWeight = 40.0;
+        int newMaxScore = 100;
+
+        boolean actual = course1.addAssignment(newName, newWeight, newMaxScore);
+        Assertions.assertTrue(actual);
     }
 }
