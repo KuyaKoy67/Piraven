@@ -61,9 +61,9 @@ public class Course {
 
         for (Assignment assignment : assignments) {
             assignment.getScores().add(null);
-
-            finalScores.add(null);
         }
+
+        finalScores.add(null);
 
         return true;
     }
@@ -126,19 +126,9 @@ public class Course {
      * the final score for each student
      */
     public void generateScores() {
-        Random random = new Random();
-
-        int numOfStudents = registeredStudents.size();
-
         for (Assignment assignment : assignments) {
-            for (int studentIdx = 0; studentIdx < numOfStudents; studentIdx++) {
-                int maxScore = 100;
-                int randomScore = random.nextInt(maxScore + 1);
-
-                assignment.getScores().set(studentIdx, randomScore);
-            }
+            assignment.generateRandomScore(); // Assumes this method fills the scores for all registered students
         }
-
         this.calcStudentsAverage();
     }
 
