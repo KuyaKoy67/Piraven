@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 class CourseTest {
 
     @Test
-    @DisplayName("Sum = 20.0 + 40.0 + 40.0 -> true")
+    @DisplayName("isAssignmentWeightValid(): Sum = 20.0 + 40.0 + 40.0 -> true")
     void isAssignmentWeightValid1() {
         Department department = new Department("Computer Science");
         Course course1 = new Course("Discrete Math", 3.0, department);
 
-        Assignment assignment1 = new Assignment("Assignment1", 20.0);
-        Assignment assignment2 = new Assignment("Assignment2", 40.0);
-        Assignment assignment3 = new Assignment("Assignment3", 40.0);
+        Assignment assignment1 = new Assignment("Assignment1", 20.0, 100);
+        Assignment assignment2 = new Assignment("Assignment2", 40.0, 100);
+        Assignment assignment3 = new Assignment("Assignment3", 40.0, 100);
 
         course1.getAssignments().add(assignment1);
         course1.getAssignments().add(assignment2);
@@ -27,14 +27,14 @@ class CourseTest {
     }
 
     @Test
-    @DisplayName("Sum = 20.0 + 40.0 + 20.0 -> false")
+    @DisplayName("isAssignmentWeightValid():Sum = 20.0 + 40.0 + 20.0 -> false")
     void isAssignmentWeightValid2() {
         Department department = new Department("Computer Science");
         Course course1 = new Course("Discrete Math", 3.0, department);
 
-        Assignment assignment1 = new Assignment("Assignment1", 20.0);
-        Assignment assignment2 = new Assignment("Assignment2", 40.0);
-        Assignment assignment3 = new Assignment("Assignment3", 20.0);
+        Assignment assignment1 = new Assignment("Assignment1", 20.0, 100);
+        Assignment assignment2 = new Assignment("Assignment2", 40.0, 100);
+        Assignment assignment3 = new Assignment("Assignment3", 20.0, 100);
 
         course1.getAssignments().add(assignment1);
         course1.getAssignments().add(assignment2);
@@ -43,5 +43,28 @@ class CourseTest {
         boolean expected = false;
         boolean actual = course1.isAssignmentWeightValid();
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("calcStudentsAverage(): 1 student, two assignments with weights 40 and 60 -> 86")
+    void testCalcStudentsAverage1() {
+        Department department = new Department("Computer Science");
+        Course course1 = new Course("Discrete Math", 3.0, department);
+        Address address = new Address(120, "Bouchette", "Montreal", Address.Province.QC, "A1B2C3");
+        Student student = new Student("John Alack", Student.Gender.MALE, address, department);
+
+        course1.addAssignment("A1", 40, 100);
+        course1.addAssignment("A2", 60, 100);
+
+        boolean registered = student.registerCourse(course1);
+        Assertions.assertEquals(true, registered);
+
+        course1.getAssignments().get(0).getScores().set(0, 80);
+        course1.getAssignments().get(1).getScores().set(0, 90);
+
+        int[] actual = course1.calcStudentsAverage();
+        int[] expected = {86};
+
+        Assertions.assertArrayEquals(actual, expected);
     }
 }

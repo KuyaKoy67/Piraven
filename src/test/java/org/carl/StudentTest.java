@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class StudentTest {
 
     @Test
-    @DisplayName("Course to register -> true")
+    @DisplayName("RegisterCourse(): Course to register -> true")
     void registerCourseTest1() {
         Department department = new Department("Computer Science");
         Address address = new Address(120, "Bouchette", "Montreal", Address.Province.QC, "A1B2C3");
@@ -21,7 +21,7 @@ class StudentTest {
     }
 
     @Test
-    @DisplayName("Course already registered -> false")
+    @DisplayName("RegisterCourse(): Course already registered -> false")
     void registerCourseTest2() {
         Department department = new Department("Computer Science");
         Address address = new Address(120, "Bouchette", "Montreal", Address.Province.QC, "A1B2C3");
@@ -38,7 +38,7 @@ class StudentTest {
     }
 
     @Test
-    @DisplayName("Course drop -> true")
+    @DisplayName("DropCourse(): Course drop -> true")
     void dropCourseTest1() {
         Department department = new Department("Computer Science");
         Address address = new Address(120, "Bouchette", "Montreal", Address.Province.QC, "A1B2C3");
@@ -55,7 +55,7 @@ class StudentTest {
     }
 
     @Test
-    @DisplayName("Course that's already dropped -> false")
+    @DisplayName("DropCourse(): Course that's already dropped -> false")
     void dropCourseTest2() {
         Department department = new Department("Computer Science");
         Address address = new Address(120, "Bouchette", "Montreal", Address.Province.QC, "A1B2C3");

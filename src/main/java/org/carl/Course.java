@@ -105,7 +105,7 @@ public class Course {
      * @return the boolean value that confirms if an assignment is added or not
      */
     public boolean addAssignment(String assignmentName, double weight, int maxScore) {
-        Assignment newAssignment = new Assignment(assignmentName, weight);
+        Assignment newAssignment = new Assignment(assignmentName, weight, maxScore);
         assignments.add(newAssignment);
 
         for (int i = 0; i < registeredStudents.size(); i++) {

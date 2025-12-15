@@ -16,7 +16,7 @@ public class Assignment {
 
     private static int nextId;
 
-    public Assignment(String assignmentName, double weight) {
+    public Assignment(String assignmentName, double weight, int maxScore) {
         this.assignmentId = String.format("%05d",  nextId++);
         this.assignmentName = Util.toTitleCase(assignmentName);
         this.weight = weight;
